@@ -17,7 +17,10 @@ This repo is designed to provide space to code a fullstack app. It contains node
     git checkout -b <branchname>
     npm run dev
     ```
-  </details>
+
+npm run knex migrate:make products 
+npm run knex migrate:latest 
+npm run knex seed:make products   </details>
 
 <details>
   <summary>More about using <code>npm</code> vs <code>npx</code></summary>
