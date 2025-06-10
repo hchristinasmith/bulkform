@@ -13,36 +13,37 @@ export default function AddToCart({ product }: Props) {
   const queryClient = useQueryClient()
 
   const addToCartMutation = useMutation({
-    mutationFn: (cartItem: CartData) => addToCart(cartItem),
+    mutationFn: (cartItem: CartData): Promise<void> => addToCart(cartItem),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
+      setQuantity(1)
     },
   })
 
   const handleAdd = () => {
+    if (quantity < 1) return
     const cartItem: CartData = {
       product_id: product.id,
       quantity: quantity,
-      price: 0,
-      name: '',
     }
     addToCartMutation.mutate(cartItem)
   }
   return (
     <div>
-      <div>
-        <label htmlFor={`quantity-${product.id}`}>Qty: </label>
-        <input
-          id={`quantity-${product.id}`}
-          type="number"
-          min={1}
-          value={quantity}
-          onChange={(e) => setQuantity(Number(e.target.value))}
-        />
-      </div>
-      <div>
-        <button onClick={handleAdd}>Add to Cart</button>
-      </div>
+      <label htmlFor={`quantity-${product.id}`}>Quantity:</label>
+      <input
+        id={`quantity-${product.id}`}
+        type="number"
+        min={1}
+        value={quantity}
+        onChange={(e) => setQuantity(Number(e.target.value))}
+      />
+      <button onClick={handleAdd} disabled={addToCartMutation.isPending}>
+        {addToCartMutation.isPending ? 'Adding...' : 'Add to Cart'}
+      </button>
+      {addToCartMutation.isError && (
+        <p style={{ color: 'red' }}> Error adding to cart</p>
+      )}
     </div>
   )
 }
