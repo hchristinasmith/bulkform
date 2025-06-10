@@ -50,29 +50,25 @@ router.delete('/:product_id', async (req, res) => {
 //update quantities in cart
 router.patch('/:product_id', async (req, res) => {
   const product_id = Number(req.params.product_id)
-  const cartItem = req.body as CartData
+  const quantity = req.body.quantity
 
   if (!product_id) {
     return res.status(400).json({ error: 'Invalid Product ID' })
   }
 
-  if (product_id !== cartItem.product_id) {
-    return res.status(400).json({ error: 'Product ID mismatch' })
-  }
-
-  if (typeof cartItem.quantity !== 'number' || cartItem.quantity < 1) {
+  if (typeof quantity !== 'number' || quantity < 1) {
     return res.status(400).json({ error: 'Quantity must be a positive number' })
   }
   try {
-    const updatedRows = await db.updateQuantities(cartItem)
+    const updatedRows = await db.updateQuantities({ product_id, quantity })
     if (updatedRows) {
-      res.status(201).json({ message: 'Quantity successfully updated' })
+      res.status(200).json({ message: 'Quantity successfully updated' })
     } else {
       res.status(404).json({ error: 'Product not found in cart' })
     }
   } catch (error) {
     console.error(error)
-    res.status(500).send('Couldnt update quantity')
+    res.status(500).send("Couldn't update quantity")
   }
 })
 

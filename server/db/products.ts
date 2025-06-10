@@ -31,7 +31,7 @@ export async function deleteProduct(
   id: number,
   db = connection,
 ): Promise<Product[]> {
-  return db('products').where({ id }).delete()
+  return db('products').where({ id }).del()
 }
 
 export async function searchProducts(

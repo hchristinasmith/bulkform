@@ -1,14 +1,34 @@
 import request from 'superagent'
-import { Cart } from '../../models/cart'
+import { Cart, CartData } from '../../models/cart'
 
 const rootURL = new URL(`/api/v1`, document.baseURI)
 
 export async function getCart(): Promise<Cart[]> {
-  try {
-    const result = await request.get(`${rootURL}/cart`)
-    return result.body.cart
-  } catch (error) {
-    console.error('Failed to fetch cart:', error)
-    throw error
-  }
+  const result = await request.get(`${rootURL}/cart`)
+  return result.body.cart
+}
+
+// add cart
+export async function addToCart(items: CartData | CartData[]): Promise<void> {
+  const cartItems = Array.isArray(items) ? items : [items]
+
+  const result = await request.post(`${rootURL}/cart`).send({
+    cart: cartItems,
+  })
+  return result.body.cart
+}
+
+// delete cart
+export async function delCartItem(id: number): Promise<void> {
+  await request.del(`${rootURL}/cart/${id}`)
+  return
+}
+
+// update cart
+export async function updateQuantities(cartItem: CartData): Promise<CartData> {
+  console.log('Updating product_id:', cartItem.product_id)
+  const response = await request
+    .patch(`${rootURL}/cart/${cartItem.product_id}`)
+    .send({ quantity: cartItem.quantity })
+  return response.body as CartData
 }

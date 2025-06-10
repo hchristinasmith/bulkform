@@ -34,4 +34,17 @@ router.post('/', async (req, res) => {
   }
 })
 
+//search for product:
+router.delete('/:id', async (req, res) => {
+  const id = Number(req.params.id)
+
+  try {
+    await db.deleteProduct(id)
+    res.sendStatus(204)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send("Couldn't delete product")
+  }
+})
+
 export default router

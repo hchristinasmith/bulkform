@@ -1,11 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProducts } from '../apis/products'
-
-// const products = [
-//   { id: 1, name: 'Skis', brand: 'Line', price: '1049.00' },
-//   { id: 2, name: 'Ski Jacket', brand: 'Patagonia', price: '749.99' },
-//   { id: 3, name: 'Trainers', brand: 'Nike', price: '200.00' },
-// ]
+import AddProduct from './AddProduct'
+import DeleteButton from './DeleteProduct'
+import AddToCart from './AddToCart'
 
 export default function Products() {
   const {
@@ -26,10 +23,13 @@ export default function Products() {
     <>
       <header className="header">
         <h1>Products</h1>
+        <AddProduct />
         <ul>
           {products.map((product) => (
-            <li key={product.name}>
+            <li key={product.id}>
               {product.name + ' ' + '$' + product.price}
+              <DeleteButton product={product} />
+              <AddToCart product={product} />
             </li>
           ))}
         </ul>

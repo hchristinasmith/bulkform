@@ -11,6 +11,7 @@ export async function getCartWithProducts(db = connection) {
     .select(
       'cart.id as cart_id',
       'cart.quantity',
+      'cart.product_id',
       'products.name',
       'products.brand',
       'products.price',
@@ -44,7 +45,10 @@ export async function removeFromCart(
 }
 
 export async function updateQuantities(
-  cartItem: CartData,
+  cartItem: {
+    product_id: number
+    quantity: number
+  },
   db = connection,
 ): Promise<number> {
   const { product_id, quantity } = cartItem
