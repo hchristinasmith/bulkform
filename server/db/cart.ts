@@ -38,10 +38,10 @@ export async function addToCart(
 }
 
 export async function removeFromCart(
-  product_id: number,
+  id: number,
   db = connection,
 ): Promise<number> {
-  return db('cart').where({ product_id }).del()
+  return db('cart').where('id', id).del()
 }
 
 export async function updateQuantities(

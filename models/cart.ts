@@ -6,5 +6,5 @@ export interface CartData {
 }
 
 export interface Cart extends CartData {
-  id: number
+  cart_id: number
 }

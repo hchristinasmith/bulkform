@@ -1,3 +1,5 @@
+//NO LONGER USED
+
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { CartData } from '../../models/cart'
 import { addToCart } from '../apis/cart'
@@ -15,7 +17,7 @@ export default function AddToCart({ product }: Props) {
   const addToCartMutation = useMutation({
     mutationFn: (cartItem: CartData): Promise<void> => addToCart(cartItem),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] })
+      queryClient.refetchQueries({ queryKey: ['cart'] })
       setQuantity(1)
     },
   })

@@ -22,8 +22,19 @@ export async function delProducts(id: number): Promise<void> {
   return
 }
 
-// search products need to finish
-// export async function searchProduct(id: number): Promise<void> {
-//   await request.where(`${rootURL}/products/${id}`)
-//   return
-// }
+// search products
+
+export async function searchProduct(name?: string, brand?: string) {
+  //create object to hold query params for url
+  const queryParams = new URLSearchParams()
+  //if name filter provided, add to the query params
+  if (name) queryParams.append('name', name)
+  //if brand filter provided, add to the query params
+  if (brand) queryParams.append('brand', brand)
+  //build full URL including the search query params
+  const url = `${rootURL}/products?${queryParams.toString()}`
+  //make get request to the backend search endpoint
+  const response = await request.get(url)
+  //return list of products form the response body
+  return response.body.products
+}

@@ -28,14 +28,14 @@ router.post('/', async (req, res) => {
 })
 
 //delete from cart
-router.delete('/:product_id', async (req, res) => {
-  const product_id = Number(req.params.product_id)
+router.delete('/:id', async (req, res) => {
+  const cart_id = Number(req.params.id)
 
-  if (!product_id) {
+  if (!cart_id) {
     return res.status(400).json({ error: 'Invalid Product ID' })
   }
   try {
-    const deleted = await db.removeFromCart(product_id)
+    const deleted = await db.removeFromCart(cart_id)
     if (deleted) {
       res.status(201).json({ message: 'Item removed from cart' })
     } else {

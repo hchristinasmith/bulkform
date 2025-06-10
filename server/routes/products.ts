@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
   }
 })
 
-//search for product:
+//delete product:
 router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id)
 

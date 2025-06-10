@@ -19,8 +19,8 @@ export async function addToCart(items: CartData | CartData[]): Promise<void> {
 }
 
 // delete cart
-export async function delCartItem(id: number): Promise<void> {
-  await request.del(`${rootURL}/cart/${id}`)
+export async function delCartItem(cart_id: number): Promise<void> {
+  await request.del(`${rootURL}/cart/${cart_id}`)
   return
 }
 
