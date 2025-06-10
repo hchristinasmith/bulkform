@@ -17,13 +17,13 @@ router.get('/', async (req, res) => {
 
 //add to cart
 router.post('/', async (req, res) => {
-  const { cart } = req.body as { cart: CartData }
+  const { cart } = req.body as { cart: CartData[] }
   try {
-    const addTaCart = await db.addToCart(cart)
-    res.status(201).json({ cart: addTaCart })
+    const addedItems = await db.addToCart(cart)
+    res.status(201).json({ cart: addedItems })
   } catch (error) {
     console.error(error)
-    res.status(500).send('Couldnt add product ta cart')
+    res.status(500).send('Couldnt add product(s) ta cart')
   }
 })
 

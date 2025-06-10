@@ -1,10 +1,20 @@
+import Products from './Products'
+import Cart from './Cart'
+
 function App() {
   return (
     <>
       <header className="header">
-        <h1>My Collection</h1>
+        <h1>Order Form</h1>
       </header>
-      <section className="main">{/* add your code here */}</section>
+      <section className="main">
+        <div className="products-section">
+          <Products />
+        </div>
+        <div className="cart-section">
+          <Cart />
+        </div>
+      </section>
     </>
   )
 }

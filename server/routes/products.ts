@@ -5,13 +5,15 @@ import { ProductData } from '../../models/products.ts'
 
 const router = express.Router()
 
+//search for product:
 router.get('/', async (req, res) => {
+  const { name, brand } = req.query
   try {
-    const products = await db.getProducts()
+    const products = await db.searchProducts(name as string, brand as string)
     res.json({ products })
   } catch (error) {
     console.error(error)
-    res.status(500).send('couldn"t getProducts')
+    res.status(500).send("Couldn't search for products")
   }
 })
 

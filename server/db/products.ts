@@ -33,3 +33,21 @@ export async function deleteProduct(
 ): Promise<Product[]> {
   return db('products').where({ id }).delete()
 }
+
+export async function searchProducts(
+  name?: string,
+  brand?: string,
+  db = connection,
+): Promise<Product[]> {
+  let query = db('products')
+
+  if (name) {
+    query = query.where('name', 'like', `%${name}%`)
+  }
+
+  if (brand) {
+    query = query.where('brand', 'like', `%${brand}%`)
+  }
+
+  return query.select()
+}

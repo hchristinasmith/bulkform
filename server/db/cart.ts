@@ -18,19 +18,21 @@ export async function getCartWithProducts(db = connection) {
 }
 
 export async function addToCart(
-  item: CartData,
+  items: CartData[],
   db = connection,
 ): Promise<void> {
-  const existing = await db('cart')
-    .where({ product_id: item.product_id })
-    .first()
-
-  if (existing) {
-    await db('cart')
+  for (const item of items) {
+    const existing = await db('cart')
       .where({ product_id: item.product_id })
-      .update({ quantity: existing.quantity + item.quantity })
-  } else {
-    await db('cart').insert(item)
+      .first()
+
+    if (existing) {
+      await db('cart')
+        .where({ product_id: item.product_id })
+        .update({ quantity: existing.quantity + item.quantity })
+    } else {
+      await db('cart').insert(items)
+    }
   }
 }
 
