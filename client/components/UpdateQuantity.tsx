@@ -39,14 +39,16 @@ export default function UpdateQuantity({ item }: Props) {
       <button
         onClick={() => handleQuantityChange(quantity - 1)}
         disabled={quantity <= 1 || isUpdating}
+        className=" px-2 py-1 rounded-none bg-white text-purple-800  border-purple-800"
       >
         -
       </button>
-      <span>{isUpdating ? 'Updating...' : quantity}</span>
+      <span>{quantity}</span>
 
       <button
         onClick={() => handleQuantityChange(quantity + 1)}
         disabled={isUpdating}
+        className=" px-2 py-1 rounded-none bg-white text-purple-800 border-purple-800"
       >
         +
       </button>

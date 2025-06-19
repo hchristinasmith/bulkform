@@ -1,25 +1,38 @@
 import Products from './Products'
 import Cart from './Cart'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from 'react-router-dom'
 const queryClient = new QueryClient()
+import { ShoppingCart } from 'lucide-react'
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <>
-        <header className="header">
-          <h1>Order Form</h1>
-        </header>
-        <section className="main">
-          <div className="products-section">
-            <Products />
-          </div>
-          <div className="cart-section">
-            <Cart />
-          </div>
-        </section>
-      </>
+      <div className="min-h-screen flex flex-col">
+        <Router>
+          <header className="header flex justify-between items-center p-4 border-b bg-purple-800 text-white">
+            <NavLink to="/">
+              <h1 className="text-xl font-bold">Order Form</h1>
+            </NavLink>
+            <nav>
+              <NavLink to="/cart" aria-label="Shopping Cart">
+                <ShoppingCart color="white" size={24} />
+              </NavLink>
+            </nav>
+          </header>
+          <main className="flex-grow overflow-auto p-4">
+            <Routes>
+              <Route path="/" element={<Products />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+          </main>
+        </Router>
+      </div>
     </QueryClientProvider>
   )
 }
