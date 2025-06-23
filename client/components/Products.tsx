@@ -55,21 +55,33 @@ export default function Products() {
   if (error) {
     return <p>Error loading products</p>
   }
-
   return (
     <>
       <header className="header">
         <h1>Products</h1>
-        <AddProduct />
-        <Searchbar
-          onSearch={(name, brand) => setSearchParams({ name, brand })}
-        />
+      </header>
+
+      <AddProduct />
+
+      <Searchbar onSearch={(name, brand) => setSearchParams({ name, brand })} />
+
+      <section aria-labelledby="product-list-heading">
+        <h2 id="product-list-heading">Available Products</h2>
         <ul>
           {products.map((product: Product) => (
             <li key={product.id}>
-              {product.name + ' ' + '$' + product.price}
+              <span>
+                {product.name} - ${product.price}
+              </span>
+
               <DeleteButton product={product} />
+
+              <label htmlFor={`qty-${product.id}`} className="sr-only">
+                Quantity for {product.name}
+              </label>
               <input
+                id={`qty-${product.id}`}
+                name={`qty-${product.id}`}
                 type="number"
                 min={0}
                 value={quantities[product.id] || 0}
@@ -80,14 +92,16 @@ export default function Products() {
             </li>
           ))}
         </ul>
-        <button
-          onClick={handleAddAllToCart}
-          disabled={addAllToCartMutation.isPending}
-        >
-          {addAllToCartMutation.isPending ? 'Adding...' : 'Add To Cart'}{' '}
-        </button>
-        {addAllToCartMutation.isError && <p>Error Adding To Cart</p>}
-      </header>
+      </section>
+
+      <button
+        onClick={handleAddAllToCart}
+        disabled={addAllToCartMutation.isPending}
+      >
+        {addAllToCartMutation.isPending ? 'Adding...' : 'Add To Cart'}
+      </button>
+
+      {addAllToCartMutation.isError && <p role="alert">Error Adding To Cart</p>}
     </>
   )
 }

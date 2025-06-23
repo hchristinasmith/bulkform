@@ -1,12 +1,12 @@
 import { updateQuantities } from '../apis/cart'
 import { CartData } from '../../models/cart'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 interface Props {
   item: CartData
 }
-
+//add useEffect
 export default function UpdateQuantity({ item }: Props) {
   const [quantity, setQuantity] = useState(item.quantity)
   const [isUpdating, setIsUpdating] = useState(false)
@@ -21,11 +21,15 @@ export default function UpdateQuantity({ item }: Props) {
       setIsUpdating(false)
     },
     onError: () => {
-      setQuantity(item.quantity)
+      // setQuantity(item.quantity)
       setIsUpdating(false)
       alert('Failed to update quantity. Try again.')
     },
   })
+
+  useEffect(() => {
+    setQuantity(item.quantity)
+  }, [item.quantity])
 
   const handleQuantityChange = (newQuantity: number) => {
     if (newQuantity < 1) return

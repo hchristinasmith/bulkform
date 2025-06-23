@@ -41,37 +41,49 @@ export default function AddProduct() {
       price: '',
     })
   }
-
   return (
     <>
       <header className="header">
         <h1>Add Product</h1>
       </header>
+
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name: </label>
-        <input
-          id="name"
-          onChange={handleChange}
-          type="text"
-          value={formData.name}
-          placeholder={'name'}
-        />
-        <label htmlFor="brand">Brand: </label>
-        <input
-          id="brand"
-          onChange={handleChange}
-          type="text"
-          value={formData.brand}
-          placeholder={'brand'}
-        />
-        <label htmlFor="brand">Price: </label>
-        <input
-          id="price"
-          onChange={handleChange}
-          type="text"
-          value={formData.price}
-          placeholder={'price'}
-        />
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            id="name"
+            name="name"
+            onChange={handleChange}
+            type="text"
+            value={formData.name}
+            placeholder="e.g. Skis"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="brand">Brand:</label>
+          <input
+            id="brand"
+            name="brand"
+            onChange={handleChange}
+            type="text"
+            value={formData.brand}
+            placeholder="e.g. Line"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="price">Price:</label>
+          <input
+            id="price"
+            name="price"
+            onChange={handleChange}
+            type="text"
+            value={formData.price}
+            placeholder="e.g. 9.99"
+          />
+        </div>
+
         <button type="submit">Add Product</button>
       </form>
     </>
