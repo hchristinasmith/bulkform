@@ -15,9 +15,9 @@ export default function Searchbar({ onSearch }: Props) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="search-name">Name:</label>
         <input
-          id="name"
+          id="search-name"
           name="name"
           type="text"
           placeholder="Search by name"
@@ -27,9 +27,9 @@ export default function Searchbar({ onSearch }: Props) {
       </div>
 
       <div>
-        <label htmlFor="brand">Brand:</label>
+        <label htmlFor="search-brand">Brand:</label>
         <input
-          id="brand"
+          id="search-brand"
           name="brand"
           type="text"
           placeholder="Search by brand"
