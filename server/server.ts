@@ -12,6 +12,11 @@ server.use('/api/v1/products', productRoutes)
 
 server.use('/api/v1/cart', cartRoutes)
 
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line promise/catch-or-return
+  import('dotenv').then((dotenv) => dotenv.config())
+}
+
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
   server.use('/assets', express.static(Path.resolve('./dist/assets')))
