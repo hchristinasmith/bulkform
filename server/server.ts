@@ -13,8 +13,11 @@ server.use('/api/v1/products', productRoutes)
 server.use('/api/v1/cart', cartRoutes)
 
 if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line promise/catch-or-return
-  import('dotenv').then((dotenv) => dotenv.config())
+  import('dotenv')
+    .then((dotenv) => dotenv.config())
+    .catch((err) => {
+      console.error('Failed to load dotenv: ', err)
+    })
 }
 
 if (process.env.NODE_ENV === 'production') {
