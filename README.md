@@ -1,6 +1,23 @@
-# Fullstack Collection App
+# Bulk Order Form Application
 
-This repo is designed to provide space to code a fullstack app. It contains node modules and folders for databases, routes, API requests and React components that'll use React Query. Let's get going!
+A fullstack web application that provides an efficient bulk ordering system. This application allows users to browse products, search by name and brand, add multiple items to a cart at once, and manage their cart contents with quantity updates and item removal.
+
+## Features
+
+- **Product Browsing**: View a list of products with images, names, brands, and prices
+- **Search Functionality**: Filter products by name and brand
+- **Bulk Ordering**: Add multiple products to cart at once with quantity selection
+- **Cart Management**: Update quantities or remove items from your cart
+- **Real-time Price Calculation**: See line totals and subtotals as you adjust quantities
+- **Responsive Design**: Works seamlessly on both desktop and mobile devices
+
+## Technology Stack
+
+- **Frontend**: React with TypeScript, React Query for data fetching, React Router for navigation
+- **UI Components**: Custom UI components with Tailwind CSS styling
+- **Backend**: Express.js server with RESTful API endpoints
+- **Database**: SQLite with Knex.js query builder
+- **State Management**: React Query for server state, React hooks for local state
 
 ## Setup
 
@@ -12,7 +29,7 @@ This repo is designed to provide space to code a fullstack app. It contains node
 
     You may also want to start a new branch
     ```sh
-    cd my-fullstack-collection
+    cd bulkform
     npm i
     git checkout -b <branchname>
     npm run dev
