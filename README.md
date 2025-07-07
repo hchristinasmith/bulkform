@@ -2,7 +2,7 @@
 
 A full-stack web application that streamlines the bulk ordering process for B2B customers. Users can browse products, search by name and brand, add multiple items to a cart at once, and manage cart contents with quantity updates and item removal.
 
-🧑‍💼 Built for a client to simplify wholesale orders for her B2B customers. This application will eventually integrate with the client's BigCommerce storefront.
+Built for a client to simplify wholesale orders for her B2B customers. This application will eventually integrate with the client's BigCommerce storefront.
 
 ## Features
 
