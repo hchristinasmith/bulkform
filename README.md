@@ -11,7 +11,6 @@ Built for a client to simplify wholesale orders for her B2B customers. This appl
 - **Bulk Ordering**: Add multiple products to cart at once with quantity selection
 - **Cart Management**: Update quantities or remove items from your cart
 - **Real-time Price Calculation**: See line totals and subtotals as you adjust quantities
-- **Responsive Design**: Works seamlessly on both desktop and mobile devices
 
 ## Technology Stack
 
